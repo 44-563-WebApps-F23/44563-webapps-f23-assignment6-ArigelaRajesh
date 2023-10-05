@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Rajesh Cruise Trip</title>
+ </head>
+<body>
+
+<h2>Rajesh Arigela goes on a cruise</h2>
+
+<form>
+    <div class="form-check" style="margin: 5px;">
+        <input type="checkbox" id="shares" name="shares1" value="True">
+        <label for="shares">Shares Cabin</label></br>
+      
+        <input type="checkbox" id="break_fast" name="shares2" value="True">
+        <label for="break_fast">Breakfast</label></br>
+      
+        <input type="checkbox" id="pool" name="shares3" value="False">
+        <label for="pool">Pool Pass</label></br>
+    </div>
+    <input type="button" onclick="selectCruise()" value="Select a cruise">
+</form>
+<br>
+<br>
+<form>
+    <label for="day">Enter the number of days:</label>
+    <input type ="text" id="day" class="form-control-sm" value=days><br><br>
+
+    <label for="price">Enter price:</label>
+    <input type ="text" class="form-control-sm" id="price"><br><br>
+
+    <input type="button" onclick="updateCruise()" value="Update the cruise">
+</form>
+
+<p id="checkbox-result">This text will be replaced by checkbox selection results:</p>
+<script>
+    let my_cruise = {}
+
+    function selectCruise() {
+        my_cruise = {}
+        sharedVal = document.getElementById("shares").checked
+        breakfastVal = document.getElementById("break_fast").checked
+        poolVal = document.getElementById("pool").checked
+
+        my_cruise["shared"] = sharedVal
+        my_cruise["breakfast"] = breakfastVal
+        my_cruise["pool"] = poolVal
+
+        document.getElementById("checkbox-result").innerHTML = "Shares Cabin: " + my_cruise.shared 
+            + "<br>" + "Breakfast: " + my_cruise.breakfast + "<br>" + "Pool Pass: " + my_cruise.pool
+
+    }
+
+    function updateCruise() {
+        daysVal = document.getElementById("day").value
+        priceVal = document.getElementById("price").value
+
+        my_cruise["day"] = daysVal
+        my_cruise["price"] = priceVal
+
+        document.getElementById("checkbox-result").innerHTML = "Number of days: " + my_cruise.day + "<br>" + "Price: " + my_cruise.price
+    }
+
+</script>
+
+</body>
+</html>
