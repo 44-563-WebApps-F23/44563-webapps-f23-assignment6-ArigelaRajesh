@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Tips calculator page</title>
+ </head>
+<body>
+
+<h2>Rajesh Arigela shows tip amounts</h2>
+
+<form>
+    <label for="base_element_value">Enter base amount:</label>
+    <input type ="number" class="form-control-sm" id="base_element_value" value=50> <br><br>
+    <label for="conversion_element_value">Enter the tip percent:</label>
+    <input type ="number" class="form-control-sm" id="conversion_element_value" value=15> <br><br>
+    <input type="button" onclick="tips()" value="Show tip ">
+</form>
+<p id="result">Tips results:</p>
+<script>
+    function tips(){
+        let base_Amount = document.getElementById("base_element_value").value
+        let Tip = Number(document.getElementById("conversion_element_value").value)
+        let myOutput = ""
+        
+        for(let i=0; i<=16; i=i+4) {
+            let tip_Amount = Tip + i;
+            let amount = base_Amount * tip_Amount/100;
+            myOutput += tip_Amount +"% is " + amount + "; "
+        }
+        
+        out = document.getElementById("result");
+        out.innerHTML = "Tips as follows:" + myOutput
+    
+    }
+</script>
+<form>
+    <div class="form-check" style="margin: 2px;">
+        <input type="radio" id="sum" value="addition" name="operation" onclick="chooseOp()">
+        <label for="sum">sum</label></br>
+
+        <input type="radio" id="diff" value="difference" name="operation" onclick="chooseOp()">
+        <label for="diff">diff</label></br>
+
+        <input type="radio" id="mult" value="product" name="operation" onclick="chooseOp()">
+        <label for="mult">mult</label></br>
+    </div>
+</form>
+<p id="radio-result">Radio button results as follows:</p>
+
+<script>
+    function chooseOp(){
+        base_Amount = document.getElementById("base_element_value").value
+        Tip = document.getElementById("conversion_element_value").value
+        operation = document.getElementsByName("operation")
+        let operationValue = ""
+
+        for(let i = 0; i < operation.length; i++){
+            if(operation[i].checked){
+                operationValue = operation[i].value;
+            }
+        }
+
+        let result
+
+        switch(operationValue) {
+            case "addition":
+                result = Number(base_Amount) + Number(Tip);
+                break;
+            case "difference":
+                result = Number(base_Amount) - Number(Tip);
+                break;
+            case "product":
+                result = Number(base_Amount) * Number(Tip);
+                break;
+        }
+
+        let radioResult = document.getElementById("radio-result")
+        radioResult.innerHTML = operationValue + " of " + base_Amount + " and " + Tip + " is " + result
+    }
+</script>
+
+</body>
+</html>
